@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'jobH6JlK37sNRbMTO3HhEAh-ZTlEu_7JNtCr3CQyPVI',
   },
 };
 
@@ -57,8 +57,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClientLayout inter={inter.className}>
-      {children}
-    </ClientLayout>
+    <html lang="en">
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HT0S5QFQP1"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-HT0S5QFQP1');
+            `,
+          }}
+        />
+      </head>
+      <body>
+        <ClientLayout inter={inter.className}>
+          {children}
+        </ClientLayout>
+      </body>
+    </html>
   );
 }
