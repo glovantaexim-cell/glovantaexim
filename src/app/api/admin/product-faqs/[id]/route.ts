@@ -11,7 +11,8 @@ export async function PUT(
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     const body = await req.json();
     const [updated] = await db
       .update(dehydratedProductFaqs)
@@ -39,7 +40,8 @@ export async function DELETE(
   const auth = verifyAdminAuth(_req);
   if (!auth) return unauthorizedResponse();
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     await db.delete(dehydratedProductFaqs).where(eq(dehydratedProductFaqs.id, id));
     return NextResponse.json({ success: true });
   } catch (error) {

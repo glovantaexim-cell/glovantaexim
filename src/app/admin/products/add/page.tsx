@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
-export default function AddProductPage() {
+function AddProductPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const productType = searchParams.get('type') || 'spices';
@@ -220,5 +220,17 @@ export default function AddProductPage() {
         </div>
       </div>
     </AdminLayout>
+  );
+}
+
+export default function AddProductPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    }>
+      <AddProductPageContent />
+    </Suspense>
   );
 }

@@ -13,7 +13,8 @@ export async function DELETE(
   if (!auth) return unauthorizedResponse();
 
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
     }
@@ -53,7 +54,8 @@ export async function PATCH(
   if (!auth) return unauthorizedResponse();
 
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
     }

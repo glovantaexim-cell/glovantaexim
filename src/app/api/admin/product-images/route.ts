@@ -104,6 +104,7 @@ export async function POST(req: NextRequest) {
     const [newImage] = await db
       .insert(dehydratedProductImages)
       .values({
+        // @ts-ignore
         productId: parseInt(productId),
         url,
         cloudinaryId,
