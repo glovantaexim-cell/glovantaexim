@@ -5,7 +5,7 @@ import { CERTIFICATIONS, PRODUCT_CATEGORIES, SITE_CONFIG } from '@/lib/constants
 import NewsletterForm from '@/components/forms/NewsletterForm';
 
 export default function PremiumFooter() {
-  const currentYear = new Date().getFullYear();
+  const _currentYear = new Date().getFullYear();
 
   return (
     <footer className="overflow-hidden bg-[#062b43] text-white">
