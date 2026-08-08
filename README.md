@@ -287,4 +287,5 @@ Private - All rights reserved
 Built with ❤️ using Next.js 15, TypeScript, and modern web technologies
 #   g l o v a n t a e x i m  
  #   g l o v a n t a e x i m  
+ #   g l o v a n t a e x i m  
  
