@@ -21,7 +21,7 @@ export default function ClientLayout({
     <html lang="en" className="scroll-smooth">
       <body className={inter}>
         {!isAdminPage && <PremiumHeader />}
-        <main className={isAdminPage ? 'min-h-screen' : 'min-h-screen pt-[76px] md:pt-[108px]'}>
+        <main className={isAdminPage ? 'min-h-screen' : 'min-h-screen pt-[76px]'}>
           {children}
         </main>
         {!isAdminPage && (

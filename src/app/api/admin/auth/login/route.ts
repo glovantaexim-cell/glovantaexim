@@ -30,13 +30,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    cookies().set('admin_session', 'authenticated', {
+    (await cookies()).set('admin_session', 'authenticated', {
       httpOnly: true,
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 8, // 8 hours
     });
-    cookies().set('admin_email', email, {
+    (await cookies()).set('admin_email', email, {
       httpOnly: false,
       sameSite: 'lax',
       path: '/',

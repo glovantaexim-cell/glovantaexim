@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-700 mb-6 italic">"{testimonial.text}"</p>
+                <p className="text-gray-700 mb-6 italic">&quot;{testimonial.text}&quot;</p>
                 <div className="border-t pt-4">
                   <p className="font-bold text-gray-900">{testimonial.name}</p>
                   <p className="text-sm text-gray-600">{testimonial.company}</p>

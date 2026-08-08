@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { SITE_CONFIG, NAV_LINKS, PRODUCT_CATEGORIES } from '@/lib/constants';
+import { SITE_CONFIG, NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
 export default function Header() {

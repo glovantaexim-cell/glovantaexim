@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { PRODUCT_CATEGORIES, SITE_CONFIG } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowLeft, ArrowRight, Package, Mail, MessageCircle } from 'lucide-react';
+import { ArrowRight, Package, MessageCircle } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +15,7 @@ import {
 import { getWhatsAppLink } from '@/lib/utils';
 
 interface Props {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }
 
 export async function generateStaticParams() {
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const category = PRODUCT_CATEGORIES.find((c) => c.slug === params.category);
+  const { category: categorySlug } = await params;
+  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug);
 
   if (!category) {
     return {
@@ -39,19 +40,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function CategoryPage({ params }: Props) {
-  if (params.category === 'dehydrated-products') {
+export default async function CategoryPage({ params }: Props) {
+  const { category: categorySlug } = await params;
+  
+  if (categorySlug === 'dehydrated-products') {
     redirect('/products/dehydrated');
   }
 
-  const category = PRODUCT_CATEGORIES.find((c) => c.slug === params.category);
+  const category = PRODUCT_CATEGORIES.find((c) => c.slug === categorySlug);
 
   if (!category) {
     notFound();
   }
 
-  const categoryIndex = PRODUCT_CATEGORIES.findIndex((c) => c.slug === params.category);
-  const whatsappMessage = `Hi! I'm interested in your ${category.title}. I'd like to know more about products and pricing.`;
+  const categoryIndex = PRODUCT_CATEGORIES.findIndex((c) => c.slug === categorySlug);
+  const whatsappMessage = `Hi! I&apos;m interested in your ${category.title}. I&apos;d like to know more about products and pricing.`;
   const whatsappUrl = getWhatsAppLink(SITE_CONFIG.whatsapp, whatsappMessage);
 
   const faqs = [
@@ -130,8 +133,8 @@ export default function CategoryPage({ params }: Props) {
                 Products Coming Soon!
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                We're currently updating our product catalog with detailed information and images. 
-                In the meantime, we'd love to discuss your requirements directly.
+                We&apos;re currently updating our product catalog with detailed information and images. 
+                In the meantime, we&apos;d love to discuss your requirements directly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" asChild>

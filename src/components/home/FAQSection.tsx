@@ -78,7 +78,7 @@ export default function FAQSection() {
 
           <div className="mt-8 text-center">
             <p className="text-gray-600 mb-4">
-              Have more questions? We're here to help!
+              Have more questions? We&apos;re here to help!
             </p>
             <Button asChild>
               <Link href="/contact">Contact Us</Link>

@@ -1,17 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
-import { dehydratedCategories, dehydratedProducts } from '@/db/schema';
+import { dehydratedCategories } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { uploadToCloudinary, deleteFromCloudinary } from '@/lib/cloudinary';
-import { generateSlug } from '@/lib/utils';
 import { verifyAdminAuth, unauthorizedResponse } from '@/lib/admin-auth';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
     }
@@ -38,13 +38,14 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();
 
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
     }
@@ -116,13 +117,14 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();
 
   try {
-    const id = parseInt(params.id);
+    const { id: idParam } = await params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
     }

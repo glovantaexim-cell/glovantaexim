@@ -6,10 +6,8 @@ import {
   CheckCircle2,
   Clock,
   MessageSquare,
-  AlertCircle,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 interface DashboardStats {
   totalDehydratedProducts: number;
@@ -82,7 +80,7 @@ export function Dashboard({ onNavigate }: { onNavigate: (page: string) => void }
           <div>
             <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome back! 👋</h1>
             <p className="text-blue-100">
-              Here's an overview of your admin dashboard and recent activity
+              Here&apos;s an overview of your admin dashboard and recent activity
             </p>
           </div>
           <div className="text-right">

@@ -6,7 +6,7 @@ import { AdminLayout } from '@/components/admin/AdminLayout';
 import { Dashboard } from '@/components/admin/Dashboard';
 import { UnifiedProductsManager } from '@/components/admin/UnifiedProductsManager';
 import { BlogManager } from '@/components/admin/BlogManager';
-import { DehydratedCategoriesManager } from '@/components/admin/DehydratedCategoriesManager';
+import { InquiriesManager } from '@/components/admin/InquiriesManager';
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -50,10 +50,10 @@ export default function AdminDashboard() {
             </div>
             <UnifiedProductsManager
               productType="spices"
-              onEdit={(id, type) => {
+              onEdit={(id, _type) => {
                 window.location.href = `/admin/products/edit/${id}`;
               }}
-              onViewProduct={(id, type) => {
+              onViewProduct={(id, _type) => {
                 window.location.href = `/admin/products/view/${id}`;
               }}
             />
@@ -69,10 +69,10 @@ export default function AdminDashboard() {
             </div>
             <UnifiedProductsManager
               productType="dehydrated"
-              onEdit={(id, type) => {
+              onEdit={(id, _type) => {
                 window.location.href = `/admin/products/edit/${id}`;
               }}
-              onViewProduct={(id, type) => {
+              onViewProduct={(id, _type) => {
                 window.location.href = `/admin/products/view/${id}`;
               }}
             />
@@ -88,10 +88,10 @@ export default function AdminDashboard() {
             </div>
             <UnifiedProductsManager
               productType="textile"
-              onEdit={(id, type) => {
+              onEdit={(id, _type) => {
                 window.location.href = `/admin/products/edit/${id}`;
               }}
-              onViewProduct={(id, type) => {
+              onViewProduct={(id, _type) => {
                 window.location.href = `/admin/products/view/${id}`;
               }}
             />

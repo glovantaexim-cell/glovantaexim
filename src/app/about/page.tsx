@@ -1,11 +1,8 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import CompanyIntroSection from '@/components/home/CompanyIntroSection';
 import ExportProcessSection from '@/components/home/ExportProcessSection';
-import CertificationsSection from '@/components/home/CertificationsSection';
-import StatsSection from '@/components/home/StatsSection';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -64,7 +61,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Glovanta Exim is dedicated to showcasing India's finest products to the global market. 
+                  Glovanta Exim is dedicated to showcasing India&apos;s finest products to the global market. 
                   We specialize in exporting premium quality spices, dehydrated products, and textiles 
                   to customers worldwide.
                 </p>

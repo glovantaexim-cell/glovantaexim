@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { SITE_CONFIG, PRODUCT_CATEGORIES, CERTIFICATIONS } from '@/lib/constants';
 import NewsletterForm from '@/components/forms/NewsletterForm';
 

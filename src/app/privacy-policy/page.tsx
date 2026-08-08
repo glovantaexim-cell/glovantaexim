@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
             <div className="bg-white p-8 rounded-xl shadow-sm mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
               <p className="text-gray-600 mb-4">
-                {SITE_CONFIG.name} ("we," "our," or "us") is committed to protecting your privacy. 
+                {SITE_CONFIG.name} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. 
                 This Privacy Policy explains how we collect, use, disclose, and safeguard your information 
                 when you visit our website or use our services.
               </p>
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Changes to This Policy</h2>
               <p className="text-gray-600">
                 We may update this Privacy Policy from time to time. We will notify you of any changes by 
-                posting the new Privacy Policy on this page and updating the "Last updated" date.
+                posting the new Privacy Policy on this page and updating the &quot;Last updated&quot; date.
               </p>
             </div>
 

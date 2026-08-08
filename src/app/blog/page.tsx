@@ -136,7 +136,7 @@ export default function BlogPage() {
                   No Blog Posts Yet
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  We're working on creating valuable content for you. Check back soon for export insights, industry news, and practical tips for international trade.
+                  We&apos;re working on creating valuable content for you. Check back soon for export insights, industry news, and practical tips for international trade.
                 </p>
                 <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
                   <Link href="/">

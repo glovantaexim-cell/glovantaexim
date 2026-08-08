@@ -20,7 +20,7 @@ export default function ContactCTASection() {
             Ready to Start Your Export Journey?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Get in touch with our team today. We're ready to discuss your requirements 
+            Get in touch with our team today. We&apos;re ready to discuss your requirements 
             and provide customized solutions for your business needs.
           </p>
 

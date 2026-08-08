@@ -25,12 +25,6 @@ export default function PremiumHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="hidden bg-[#062b43] text-white md:block">
-        <div className="mx-auto flex h-8 max-w-7xl items-center justify-between px-6 text-[10px] font-semibold uppercase tracking-[0.17em] text-white/70 lg:px-8">
-          <span>India to the world · export-ready supply</span>
-          <a href={`mailto:${SITE_CONFIG.email}`} className="transition-colors hover:text-white">{SITE_CONFIG.email}</a>
-        </div>
-      </div>
 
       <div className={cn('border-b transition-all duration-500', isScrolled ? 'border-[#dce7eb]/80 bg-[#fbfaf7]/95 shadow-[0_12px_32px_rgba(5,40,61,0.08)] backdrop-blur-xl' : 'border-[#e3ecee] bg-[#fbfaf7]')}>
         <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">

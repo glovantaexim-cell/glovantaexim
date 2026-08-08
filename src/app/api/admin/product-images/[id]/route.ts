@@ -7,7 +7,7 @@ import { verifyAdminAuth, unauthorizedResponse } from '@/lib/admin-auth';
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();
@@ -47,7 +47,7 @@ export async function DELETE(
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();

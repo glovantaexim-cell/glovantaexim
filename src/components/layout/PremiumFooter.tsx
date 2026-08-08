@@ -45,7 +45,7 @@ export default function PremiumFooter() {
           <span className="flex items-start gap-2 leading-5"><MapPin className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7ec5d8]" />Surat, Gujarat, India</span>
         </div>
       </div>
-      <div className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-[11px] text-white/45 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8"><span>© {currentYear} Glovanta Exim. All rights reserved.</span><span>Premium Indian goods, thoughtfully exported.</span></div></div>
+      <div className="border-t border-white/10"><div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-5 text-[11px] text-white/45 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8"><span>© Glovanta Exim. All rights reserved.</span><span>Premium Indian goods, thoughtfully exported.</span></div></div>
     </footer>
   );
 }

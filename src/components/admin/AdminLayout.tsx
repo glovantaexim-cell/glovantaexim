@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   Package,
   FileText,
-  FolderOpen,
   MessageSquare,
   Settings,
   LogOut,

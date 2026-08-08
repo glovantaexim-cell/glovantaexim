@@ -6,7 +6,7 @@ import { verifyAdminAuth, unauthorizedResponse } from '@/lib/admin-auth';
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(req);
   if (!auth) return unauthorizedResponse();
@@ -34,7 +34,7 @@ export async function PUT(
 
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const auth = verifyAdminAuth(_req);
   if (!auth) return unauthorizedResponse();
