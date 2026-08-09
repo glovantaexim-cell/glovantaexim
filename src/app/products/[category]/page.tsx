@@ -43,7 +43,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CategoryPage({ params }: Props) {
   const { category: categorySlug } = await params;
   
-  if (categorySlug === 'dehydrated-products') {
+  // Redirect specific categories to their dedicated pages
+  if (categorySlug === 'textile') {
+    redirect('/products/textile');
+  }
+  
+  if (categorySlug === 'spices') {
+    redirect('/products/spices');
+  }
+  
+  if (categorySlug === 'dehydrated' || categorySlug === 'dehydrated-products') {
     redirect('/products/dehydrated');
   }
 
