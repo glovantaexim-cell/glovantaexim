@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   openGraph: {
     type: 'website',
@@ -57,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG7MYLJK9C"></script>
         <script
@@ -71,8 +78,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
-        <ClientLayout inter={inter.className}>
+      <body className={inter.className}>
+        <ClientLayout>
           {children}
         </ClientLayout>
       </body>

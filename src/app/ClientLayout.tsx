@@ -9,30 +9,26 @@ import CookieConsent from '@/components/shared/CookieConsent';
 
 export default function ClientLayout({
   children,
-  inter,
 }: {
   children: React.ReactNode;
-  inter: string;
 }) {
   const pathname = usePathname();
   const isAdminPage = pathname?.startsWith('/admin');
 
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={inter}>
-        {!isAdminPage && <PremiumHeader />}
-        <main className={isAdminPage ? 'min-h-screen' : 'min-h-screen pt-[76px]'}>
-          {children}
-        </main>
-        {!isAdminPage && (
-          <>
-            <PremiumFooter />
-            <WhatsAppButton />
-            <BackToTop />
-            <CookieConsent />
-          </>
-        )}
-      </body>
-    </html>
+    <>
+      {!isAdminPage && <PremiumHeader />}
+      <main className={isAdminPage ? 'min-h-screen' : 'min-h-screen pt-[76px]'}>
+        {children}
+      </main>
+      {!isAdminPage && (
+        <>
+          <PremiumFooter />
+          <WhatsAppButton />
+          <BackToTop />
+          <CookieConsent />
+        </>
+      )}
+    </>
   );
 }
