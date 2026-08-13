@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PRODUCT_CATEGORIES, SITE_CONFIG } from '@/lib/constants';
 import { getWhatsAppLink } from '@/lib/utils';
+import HeroBackground from './HeroBackground';
 
 const categoryImages = ['/spices-card.png', '/dehydrated-card.png', '/textile-card.png'];
 
@@ -27,7 +28,7 @@ export default function PremiumHome() {
   return (
     <>
       <section className="relative isolate overflow-hidden bg-[#062b43]">
-        <div className="absolute inset-0 bg-cover bg-[center_right_38%] bg-no-repeat" style={{ backgroundImage: "url('/hero-bg.png')" }} />
+        <HeroBackground />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,34,53,0.98)_0%,rgba(4,34,53,0.92)_34%,rgba(4,34,53,0.54)_58%,rgba(4,34,53,0.16)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#062b43] to-transparent" />
 
@@ -111,8 +112,8 @@ export default function PremiumHome() {
 
       <section className="bg-[#f3a35d] py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
-          <div><span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#70401f]">Start a conversation</span><h2 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-[-0.05em] text-[#3c2514] sm:text-5xl">Let&apos;s find the right fit for your market.</h2></div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end"><Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#062b43] px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0b405f]">Request a quote <ArrowUpRight className="h-4 w-4" /></Link><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#79502d]/30 bg-[#f9b77c] px-6 py-3.5 text-sm font-bold text-[#4a2a16] transition-all hover:-translate-y-0.5 hover:bg-[#ffc58f]">Message on WhatsApp <UsersRound className="h-4 w-4" /></a></div>
+          <div><span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#6b3d1f]">Start a conversation</span><h2 className="mt-3 max-w-3xl text-4xl font-bold leading-tight tracking-[-0.05em] text-[#2f2013] sm:text-5xl">Let&apos;s find the right fit for your market.</h2></div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end"><Link href="/contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#062b43] px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#0b405f]">Request a quote <ArrowUpRight className="h-4 w-4" /></Link><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#6b3d1f]/40 bg-[#f9b77c] px-6 py-3.5 text-sm font-bold text-[#3d241a] transition-all hover:-translate-y-0.5 hover:bg-[#ffc58f]">Message on WhatsApp <UsersRound className="h-4 w-4" /></a></div>
         </div>
       </section>
     </>

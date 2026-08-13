@@ -72,7 +72,7 @@
 
 @layer components {
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#08729e];
+    @apply inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0a5f7a];
   }
 
   .eyebrow::before {
@@ -85,7 +85,7 @@
   }
 
   .section-copy {
-    @apply mt-5 max-w-2xl text-base leading-7 text-[#58717d] sm:text-lg;
+    @apply mt-5 max-w-2xl text-base leading-7 text-[#3a4d56] sm:text-lg;
   }
 
   .site-button-primary {

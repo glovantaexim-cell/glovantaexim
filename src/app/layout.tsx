@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/constants';
+import { CriticalCSS } from '@/components/shared/CriticalCSS';
 import ClientLayout from './ClientLayout';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -66,14 +67,37 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG7MYLJK9C"></script>
+        {/* Critical CSS inline - prevents render blocking */}
+        <CriticalCSS />
+        
+        {/* Preload critical fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* Preload hero images for better LCP */}
+        <link rel="preload" as="image" href="/hero-bg-mobile.avif" media="(max-width: 640px)" />
+        <link rel="preload" as="image" href="/hero-bg-tablet.avif" media="(min-width: 641px) and (max-width: 1024px)" />
+        <link rel="preload" as="image" href="/hero-bg-desktop.avif" media="(min-width: 1025px)" />
+        
+        {/* DNS prefetch for external services */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        
+        {/* Google Analytics - loaded after interactive */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-WG7MYLJK9C"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-WG7MYLJK9C');
+              gtag('config', 'G-WG7MYLJK9C', {
+                'page_path': window.location.pathname,
+                'send_page_view': false
+              });
             `,
           }}
         />
