@@ -1,103 +1,117 @@
 # Glovanta Exim - AI-Readable Company Information
 
-## Company Overview
 Glovanta Exim is a leading exporter of premium quality products from India to global markets. We specialize in three main product categories: Spices, Dehydrated Products, and Textile Products.
 
-## Contact Information
-- Company Name: Glovanta Exim
-- Email: info@glovantaexim.com
-- Phone: +91 9054626928
-- WhatsApp: +919054626928
-- Address: 415, The Galleria, Yogi Chowk Ground, Chikuwadi, Varachha, Surat, Gujarat, India - 395011
+## Company Overview
+
+**Company Name:** Glovanta Exim  
+**Website:** https://www.glovantaexim.com  
+**Email:** info@glovantaexim.com  
+**Phone:** +91 9054626928  
+**WhatsApp:** +919054626928  
+**Address:** 415, The Galleria, Yogi Chowk Ground, Chikuwadi, Varachha, Surat, Gujarat, India - 395011
 
 ## Product Categories
 
-### 1. Spices
+### Spices
+
 Premium quality Indian spices sourced from the finest farms:
-- Turmeric Powder
-- Turmeric Finger
-- Red Chilli Powder
-- Cumin Powder
-- Cumin Seed
-- Coriander Powder
-- Coriander Seed
-- Ajwain Seed
-- Fennel Seed
-- Fenugreek Seeds
-- Yellow Mustard Seed
-- Black Mustard Seed
 
-### 2. Dehydrated Products
+- [Turmeric Powder](https://www.glovantaexim.com/products/spices/turmeric-powder)
+- [Turmeric Finger](https://www.glovantaexim.com/products/spices/turmeric-finger)
+- [Red Chilli Powder](https://www.glovantaexim.com/products/spices/red-chilli-powder)
+- [Cumin Powder](https://www.glovantaexim.com/products/spices/cumin-powder)
+- [Cumin Seed](https://www.glovantaexim.com/products/spices/cumin-seed)
+- [Coriander Powder](https://www.glovantaexim.com/products/spices/coriander-powder)
+- [Coriander Seed](https://www.glovantaexim.com/products/spices/coriander-seed)
+- [Ajwain Seed](https://www.glovantaexim.com/products/spices/ajwain-seed)
+- [Fennel Seed](https://www.glovantaexim.com/products/spices/fennel-seed)
+- [Fenugreek Seeds](https://www.glovantaexim.com/products/spices/fenugreek-seeds)
+- [Yellow Mustard Seed](https://www.glovantaexim.com/products/spices/yellow-mustard-seed)
+- [Black Mustard Seed](https://www.glovantaexim.com/products/spices/black-mustard-seed)
+
+### Dehydrated Products
+
 High-quality dehydrated vegetables and powders:
-- Dehydrated White Onion (Flakes & Minced)
-- Dehydrated Red Onion (Flakes & Minced)
-- Onion Powder (Red & White)
-- Dehydrated Garlic (Flakes & Minced)
-- Garlic Powder
-- Ginger Powder
-- Dehydrated Tomato (Flakes & Minced)
-- Tomato Powder
-- Dehydrated Potato (Flakes & Minced)
-- Beetroot Powder
-- Amla Powder
-- Moringa Powder
-- Neem Powder
-- Mint Powder
-- Tulsi Powder
 
-### 3. Textile Products
+- [Dehydrated White Onion (Flakes & Minced)](https://www.glovantaexim.com/products/dehydrated/white-onion-flakes-minced)
+- [Dehydrated Red Onion (Flakes & Minced)](https://www.glovantaexim.com/products/dehydrated/red-onion-flakes-minced)
+- [Onion Powder (Red & White)](https://www.glovantaexim.com/products/dehydrated/onion-red-and-white-powder)
+- [Dehydrated Garlic (Flakes & Minced)](https://www.glovantaexim.com/products/dehydrated/dehydrated-garlic-flakes-and-minced)
+- [Garlic Powder](https://www.glovantaexim.com/products/dehydrated/garlic-powder)
+- [Ginger Powder](https://www.glovantaexim.com/products/dehydrated/ginger-powder)
+- [Dehydrated Tomato (Flakes & Minced)](https://www.glovantaexim.com/products/dehydrated/dehydrated-tomato-flakes-and-minced)
+- [Tomato Powder](https://www.glovantaexim.com/products/dehydrated/tomato-powder)
+- [Dehydrated Potato (Flakes & Minced)](https://www.glovantaexim.com/products/dehydrated/dehydrated-potato-flakes-and-minced)
+- [Beetroot Powder](https://www.glovantaexim.com/products/dehydrated/beet-root-powder)
+- [Amla Powder](https://www.glovantaexim.com/products/dehydrated/amla-powder)
+- [Moringa Powder](https://www.glovantaexim.com/products/dehydrated/moringa-powder)
+- [Neem Powder](https://www.glovantaexim.com/products/dehydrated/neem-powder)
+- [Mint Powder](https://www.glovantaexim.com/products/dehydrated/meant-powder)
+- [Tulsi Powder](https://www.glovantaexim.com/products/dehydrated/tulsi-powder)
+
+### Textile Products
+
 Premium home textiles and hospitality linens:
-- Bath Towels (Luxury)
-- Hand Towels
-- Face Towels
-- Bath Mats
-- Bath Robes
-- Flat Bed Sheets
-- Fitted Bed Sheets
-- Duvet Covers
-- Pillow Cases
-- Mattress Protectors
-- Table Cloths
-- Table Napkins
+
+- [Bath Towels (Luxury)](https://www.glovantaexim.com/products/textile/luxury-bath-towels)
+- [Hand Towels](https://www.glovantaexim.com/products/textile/hand-towel)
+- [Face Towels](https://www.glovantaexim.com/products/textile/face-towel)
+- [Bath Mats](https://www.glovantaexim.com/products/textile/bath-mat)
+- [Bath Robes](https://www.glovantaexim.com/products/textile/bath-robe)
+- [Flat Bed Sheets](https://www.glovantaexim.com/products/textile/flat-bed-sheet)
+- [Fitted Bed Sheets](https://www.glovantaexim.com/products/textile/fitted-bed-sheet)
+- [Duvet Covers](https://www.glovantaexim.com/products/textile/duvet-cover)
+- [Pillow Cases](https://www.glovantaexim.com/products/textile/pillow-case)
+- [Mattress Protectors](https://www.glovantaexim.com/products/textile/mattress-protector)
+- [Table Cloths](https://www.glovantaexim.com/products/textile/table-cloth)
+- [Table Napkins](https://www.glovantaexim.com/products/textile/table-napkin)
 
 ## Export Markets
+
 We export to 50+ countries including:
 United States, United Kingdom, Canada, Australia, Germany, France, Italy, Spain, Netherlands, Belgium, Switzerland, Austria, Sweden, Norway, Denmark, Finland, Ireland, Portugal, Greece, Poland, UAE, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman, Singapore, Malaysia, Thailand, Indonesia, Philippines, Vietnam, Japan, South Korea, Taiwan, Hong Kong, New Zealand, and more.
 
 ## Export Process
-1. Inquiry - Submit requirements through contact form or WhatsApp
-2. Quotation - Receive detailed pricing within 24 hours
-3. Sample - Review product samples
-4. Order Confirmation - Finalize order details and payment terms
-5. Production - Strict quality control measures
-6. Shipping - Secure packaging and timely shipment
-7. Delivery - Track shipment to destination
 
-## Website Structure
-- Homepage: https://www.glovantaexim.com/
-- About Us: https://www.glovantaexim.com/about
-- Products: https://www.glovantaexim.com/products
-- Spices: https://www.glovantaexim.com/products/spices
-- Dehydrated Products: https://www.glovantaexim.com/products/dehydrated
-- Textiles: https://www.glovantaexim.com/products/textile
-- Contact: https://www.glovantaexim.com/contact
-- Blog: https://www.glovantaexim.com/blog
-- Catalog Download: https://www.glovantaexim.com/catalog
+Our streamlined 7-step ordering process:
+
+1. **Inquiry** - Submit requirements through [contact form](https://www.glovantaexim.com/contact) or WhatsApp
+2. **Quotation** - Receive detailed pricing within 24 hours
+3. **Sample** - Review product samples
+4. **Order Confirmation** - Finalize order details and payment terms
+5. **Production** - Strict quality control measures
+6. **Shipping** - Secure packaging and timely shipment
+7. **Delivery** - Track shipment to destination
+
+## Website Navigation
+
+- [Homepage](https://www.glovantaexim.com/)
+- [About Us](https://www.glovantaexim.com/about)
+- [Products Overview](https://www.glovantaexim.com/products)
+- [Spices Category](https://www.glovantaexim.com/products/spices)
+- [Dehydrated Products Category](https://www.glovantaexim.com/products/dehydrated)
+- [Textiles Category](https://www.glovantaexim.com/products/textile)
+- [Contact Us](https://www.glovantaexim.com/contact)
+- [Blog](https://www.glovantaexim.com/blog)
 
 ## Key Features
-- Premium Quality: Stringent quality control at every stage
-- Competitive Pricing: Direct sourcing and efficient operations
-- Reliable Supply: Consistent availability and on-time delivery
-- Global Reach: Exporting to 50+ countries
-- Custom Solutions: Flexible packaging, labeling, and specifications
-- Expert Support: 24/7 customer service
+
+- **Premium Quality:** Stringent quality control at every stage
+- **Competitive Pricing:** Direct sourcing and efficient operations
+- **Reliable Supply:** Consistent availability and on-time delivery
+- **Global Reach:** Exporting to 50+ countries
+- **Custom Solutions:** Flexible packaging, labeling, and specifications
+- **Expert Support:** 24/7 customer service
 
 ## Business Hours
-- Monday - Friday: 9:00 AM - 6:00 PM IST
-- Saturday: 10:00 AM - 4:00 PM IST
-- Sunday: Closed
+
+- **Monday - Friday:** 9:00 AM - 6:00 PM IST
+- **Saturday:** 10:00 AM - 4:00 PM IST
+- **Sunday:** Closed
 
 ## Industries Served
+
 - Hospitality (Hotels, resorts, restaurants)
 - Healthcare (Hospitals, clinics, medical facilities)
 - Retail (Supermarkets, specialty stores, distributors)
@@ -106,7 +120,9 @@ United States, United Kingdom, Canada, Australia, Germany, France, Italy, Spain,
 - Wholesale (Bulk buyers and importers)
 
 ## Response Time
+
 We respond to all inquiries within 24 hours.
 
 ---
-Last Updated: 2026
+
+*Last Updated: 2026*
