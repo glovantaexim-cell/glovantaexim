@@ -100,6 +100,9 @@ export default function ProductDetailView({
               <img
                 src={featuredImage.src}
                 alt={featuredImage.alt}
+                width="800"
+                height="800"
+                loading="eager"
                 className={isContainedImage
                   ? 'h-full w-full object-contain transition-transform duration-700 ease-out hover:scale-105'
                   : 'h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-105'}
@@ -114,6 +117,9 @@ export default function ProductDetailView({
                     <img
                       src={img.src}
                       alt={img.alt}
+                      width="80"
+                      height="80"
+                      loading="lazy"
                       className={isContainedImage ? 'h-full w-full object-contain p-2' : 'h-full w-full object-cover'}
                     />
                   </button>
@@ -168,15 +174,15 @@ export default function ProductDetailView({
             {/* Quick Stats Bar */}
             <motion.div variants={fadeUp} className="grid grid-cols-2 gap-px bg-slate-100 rounded-3xl overflow-hidden sm:grid-cols-3 border border-slate-100">
               <div className="bg-white p-6">
-                <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Markets</h4>
+                <h2 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Markets</h2>
                 <p className="mt-1 text-sm font-medium text-slate-900">{product.exportMarkets[0]} & {product.exportMarkets.length - 1} more</p>
               </div>
               <div className="bg-white p-6">
-                <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Certified</h4>
+                <h2 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Certified</h2>
                 <p className="mt-1 text-sm font-medium text-slate-900 truncate">{product.certifications[0]}</p>
               </div>
               <div className="bg-white p-6 col-span-2 sm:col-span-1">
-                <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Packaging</h4>
+                <h2 className="text-xs uppercase tracking-wider text-slate-400 font-semibold">Packaging</h2>
                 <p className="mt-1 text-sm font-medium text-slate-900 truncate">{product.packaging[0]}</p>
               </div>
             </motion.div>
@@ -290,7 +296,14 @@ export default function ProductDetailView({
               {relatedProducts.map((item) => (
                 <Link key={item.href} href={item.href} className="group relative rounded-3xl bg-white p-4 transition-all hover:shadow-xl hover:-translate-y-1">
                   <div className="aspect-square overflow-hidden rounded-2xl bg-slate-100 mb-4 mix-blend-multiply flex items-center justify-center p-6">
-                    <img src={item.imageSrc} alt={item.title} className="h-full w-full object-contain mix-blend-darken transition-transform duration-500 group-hover:scale-110" />
+                    <img 
+                      src={item.imageSrc} 
+                      alt={item.title} 
+                      width="300"
+                      height="300"
+                      loading="lazy"
+                      className="h-full w-full object-contain mix-blend-darken transition-transform duration-500 group-hover:scale-110" 
+                    />
                   </div>
                   <div className="px-2 pb-2 text-center">
                     <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">{item.form}</span>

@@ -89,9 +89,21 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form 
+      onSubmit={handleSubmit(onSubmit)} 
+      className="space-y-6"
+      aria-label="Contact inquiry form"
+      noValidate
+    >
       {/* Honeypot field (hidden) */}
-      <input type="text" {...register('honeypot')} className="hidden" tabIndex={-1} autoComplete="off" />
+      <input 
+        type="text" 
+        {...register('honeypot')} 
+        className="hidden" 
+        tabIndex={-1} 
+        autoComplete="off"
+        aria-hidden="true"
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Full Name */}
@@ -101,12 +113,18 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           </Label>
           <Input
             id="fullName"
+            type="text"
+            autoComplete="name"
+            aria-required="true"
+            aria-describedby={errors.fullName ? 'fullName-error' : undefined}
             {...register('fullName')}
             placeholder="John Doe"
             disabled={status === 'loading'}
           />
           {errors.fullName && (
-            <p className="text-sm text-red-500 mt-1">{errors.fullName.message}</p>
+            <p id="fullName-error" className="text-sm text-red-500 mt-1" role="alert">
+              {errors.fullName.message}
+            </p>
           )}
         </div>
 
@@ -115,6 +133,8 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           <Label htmlFor="companyName">Company Name</Label>
           <Input
             id="companyName"
+            type="text"
+            autoComplete="organization"
             {...register('companyName')}
             placeholder="Your Company Inc."
             disabled={status === 'loading'}
@@ -129,12 +149,17 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           <Input
             id="email"
             type="email"
+            autoComplete="email"
+            aria-required="true"
+            aria-describedby={errors.email ? 'email-error' : undefined}
             {...register('email')}
             placeholder="john@example.com"
             disabled={status === 'loading'}
           />
           {errors.email && (
-            <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+            <p id="email-error" className="text-sm text-red-500 mt-1" role="alert">
+              {errors.email.message}
+            </p>
           )}
         </div>
 
@@ -144,10 +169,11 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
             Country <span className="text-red-500">*</span>
           </Label>
           <Select
+            name="country"
             onValueChange={(value) => setValue('country', value)}
             disabled={status === 'loading'}
           >
-            <SelectTrigger>
+            <SelectTrigger id="country" aria-required="true" aria-label="Select your country">
               <SelectValue placeholder="Select your country" />
             </SelectTrigger>
             <SelectContent>
@@ -159,7 +185,9 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
             </SelectContent>
           </Select>
           {errors.country && (
-            <p className="text-sm text-red-500 mt-1">{errors.country.message}</p>
+            <p id="country-error" className="text-sm text-red-500 mt-1" role="alert">
+              {errors.country.message}
+            </p>
           )}
         </div>
 
@@ -168,6 +196,8 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           <Label htmlFor="phone">Phone Number</Label>
           <Input
             id="phone"
+            type="tel"
+            autoComplete="tel"
             {...register('phone')}
             placeholder="+1 234 567 8900"
             disabled={status === 'loading'}
@@ -179,6 +209,8 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           <Label htmlFor="whatsapp">WhatsApp Number</Label>
           <Input
             id="whatsapp"
+            type="tel"
+            autoComplete="tel"
             {...register('whatsapp')}
             placeholder="+1 234 567 8900"
             disabled={status === 'loading'}
@@ -189,10 +221,11 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
         <div>
           <Label htmlFor="productInterest">Product Interest</Label>
           <Select
+            name="productInterest"
             onValueChange={(value) => setValue('productInterest', value)}
             disabled={status === 'loading'}
           >
-            <SelectTrigger>
+            <SelectTrigger id="productInterest" aria-label="Select product category">
               <SelectValue placeholder="Select product category" />
             </SelectTrigger>
             <SelectContent>
@@ -211,6 +244,7 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
           <Label htmlFor="quantity">Estimated Quantity</Label>
           <Input
             id="quantity"
+            type="text"
             {...register('quantity')}
             placeholder="e.g., 1000 kg, 500 units"
             disabled={status === 'loading'}
@@ -225,13 +259,17 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
         </Label>
         <Textarea
           id="message"
+          aria-required="true"
+          aria-describedby={errors.message ? 'message-error' : undefined}
           {...register('message')}
           placeholder="Tell us about your requirements..."
           rows={5}
           disabled={status === 'loading'}
         />
         {errors.message && (
-          <p className="text-sm text-red-500 mt-1">{errors.message.message}</p>
+          <p id="message-error" className="text-sm text-red-500 mt-1" role="alert">
+            {errors.message.message}
+          </p>
         )}
       </div>
 
@@ -252,10 +290,16 @@ export default function ContactForm({ defaultProductInterest }: ContactFormProps
       )}
 
       {/* Submit Button */}
-      <Button type="submit" size="lg" className="w-full" disabled={status === 'loading'}>
+      <Button 
+        type="submit" 
+        size="lg" 
+        className="w-full" 
+        disabled={status === 'loading'}
+        aria-label="Submit inquiry form"
+      >
         {status === 'loading' ? (
           <>
-            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+            <Loader2 className="w-5 h-5 mr-2 animate-spin" aria-hidden="true" />
             Sending...
           </>
         ) : (

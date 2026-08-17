@@ -10,6 +10,9 @@ import {
 } from '@/lib/dehydrated-products';
 import { getWhatsAppLink } from '@/lib/utils';
 import ProductDetailView from '@/components/products/ProductDetailView';
+import { getBreadcrumbSchema } from '@/lib/structured-data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -110,9 +113,18 @@ export default async function DehydratedProductPage({ params }: Props) {
     imageSrc: resolveDehydratedImage(rp.imageGallery.find(img => img.featured) || rp.imageGallery[0])
   }));
 
+  // Breadcrumb Schema
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Products', url: `${SITE_URL}/products` },
+    { name: 'Dehydrated Products', url: `${SITE_URL}/products/dehydrated` },
+    { name: product.title, url: product.canonicalUrl },
+  ]);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <ProductDetailView 
         product={product}
         category={{ title: 'Dehydrated Products', href: '/products/dehydrated' }}

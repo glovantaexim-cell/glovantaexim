@@ -3,21 +3,87 @@ import Link from 'next/link';
 import { PRODUCT_CATEGORIES } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Package } from 'lucide-react';
+import { 
+  getCollectionPageSchema,
+  getBreadcrumbSchema,
+  getFAQPageSchema 
+} from '@/lib/structured-data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
 export const metadata: Metadata = {
-  title: 'Our Products - Spices, Dehydrated Products & Textiles',
-  description: 'Browse our extensive range of premium export products including Indian spices, dehydrated vegetables, and quality textiles for global markets.',
+  title: 'Products - Spices, Dehydrated & Textiles',
+  description: 'Discover our selection of Indian spices, dehydrated ingredients, and home textiles available for international markets.',
+  alternates: {
+    canonical: `${SITE_URL}/products`,
+  },
+  openGraph: {
+    title: 'Products - Spices, Dehydrated & Textiles | Glovanta Exim',
+    description: 'Discover our selection of Indian spices, dehydrated ingredients, and home textiles available for international markets.',
+    type: 'website',
+    url: `${SITE_URL}/products`,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Products - Spices, Dehydrated & Textiles | Glovanta Exim',
+    description: 'Discover our selection of Indian spices, dehydrated ingredients, and home textiles available for international markets.',
+  },
 };
 
 export default function ProductsPage() {
+  const collectionPageSchema = getCollectionPageSchema({
+    url: `${SITE_URL}/products`,
+    name: 'Products - Spices, Dehydrated & Textiles',
+    description: 'Discover our selection of Indian spices, dehydrated ingredients, and home textiles available for international markets.',
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Products', url: `${SITE_URL}/products` },
+  ]);
+
+  const faqSchema = getFAQPageSchema([
+    {
+      question: 'What Product Categories Are Available?',
+      answer: 'Glovanta Exim offers three main categories: Spices (turmeric, cumin, coriander, chilli, mustard seeds, and more), Dehydrated Items (onion powder, garlic powder, tomato powder, herbal powders, and dried vegetables), and Textiles (bed linens, bath towels, table linens for hospitality and home use).',
+    },
+    {
+      question: 'Can I Request Custom Packaging for These Products?',
+      answer: 'Yes, we offer custom packaging options including private labeling, branded pouches, bulk containers, and retail-ready solutions. Specifications can be tailored to meet your market regulations and branding requirements.',
+    },
+    {
+      question: 'Are Samples Available Before Bulk Orders?',
+      answer: 'Yes, we provide samples for quality evaluation across all categories. Sample costs and shipping apply. This allows you to test quality before committing to larger orders.',
+    },
+    {
+      question: 'What Certifications Do Your Products Have?',
+      answer: 'Our offerings are backed by relevant certifications including ISO, FSSAI, and necessary licenses. Specific certifications vary by category. Contact us for detailed documentation.',
+    },
+  ]);
+
   return (
     <>
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} 
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-200 to-blue-400 text-white overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img 
             src="/about-hero.png" 
             alt="Our Products"
+            width="1920"
+            height="1080"
+            loading="eager"
             className="w-full h-full object-cover"
           />
         </div>
@@ -25,13 +91,13 @@ export default function ProductsPage() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-lg px-4 py-2 rounded-full text-sm font-semibold mb-6 drop-shadow-lg">
               <Package className="w-4 h-4" />
-              Premium Export Products
+              Our Product Lines
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-              Our Product Categories
+              Product Categories
             </h1>
             <p className="text-xl text-white drop-shadow-md">
-              Discover our wide range of premium quality export products sourced from the finest suppliers across India
+              Discover our selection of Indian spices, dehydrated ingredients, and home textiles sourced from trusted suppliers
             </p>
           </div>
         </div>
@@ -56,6 +122,9 @@ export default function ProductsPage() {
                         '/textile-card.png'
                       }
                       alt={category.title}
+                      width="800"
+                      height="600"
+                      loading="lazy"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -93,6 +162,51 @@ export default function ProductsPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                What Product Categories Are Available?
+              </h2>
+              <p className="text-lg text-gray-600">
+                Glovanta Exim offers three main categories: Spices (turmeric, cumin, coriander, chilli, mustard seeds, and more), Dehydrated Items (onion powder, garlic powder, tomato powder, herbal powders, and dried vegetables), and Textiles (bed linens, bath towels, table linens for hospitality and home use).
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <div className="border-l-4 border-blue-600 pl-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Can I Request Custom Packaging for These Products?
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Yes, we offer custom packaging options including private labeling, branded pouches, bulk containers, and retail-ready solutions. Specifications can be tailored to meet your market regulations and branding requirements.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-blue-600 pl-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  Are Samples Available Before Bulk Orders?
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Yes, we provide samples for quality evaluation across all categories. Sample costs and shipping apply. This allows you to test quality before committing to larger orders.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-blue-600 pl-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  What Certifications Do Your Products Have?
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our offerings are backed by relevant certifications including ISO, FSSAI, and necessary licenses. Specific certifications vary by category. Contact us for detailed documentation.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

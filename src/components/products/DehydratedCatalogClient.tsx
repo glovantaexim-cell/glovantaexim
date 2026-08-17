@@ -66,9 +66,12 @@ export default function DehydratedCatalogClient() {
   return (
     <div className="space-y-8">
       <div className="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:grid-cols-4">
-        <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 md:col-span-2">
+        <label htmlFor="dehydrated-search" className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 md:col-span-2">
           <Search className="h-4 w-4 text-slate-500" />
           <input
+            id="dehydrated-search"
+            name="search"
+            type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search dehydrated products"
@@ -76,30 +79,61 @@ export default function DehydratedCatalogClient() {
           />
         </label>
 
-        <select
-          value={selectedForm}
-          onChange={(event) => setSelectedForm(event.target.value)}
-          className="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none"
-        >
-          {forms.map((form) => (
-            <option key={form} value={form}>
-              {form}
-            </option>
-          ))}
-        </select>
+        <div>
+          <label htmlFor="dehydrated-form-filter" className="sr-only">
+            Filter by form
+          </label>
+          <select
+            id="dehydrated-form-filter"
+            name="form"
+            value={selectedForm}
+            onChange={(event) => setSelectedForm(event.target.value)}
+            className="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 outline-none"
+          >
+            {forms.map((form) => (
+              <option key={form} value={form}>
+                {form}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="flex flex-wrap items-center gap-2 md:justify-end">
-          <Button variant={sortMode === 'featured' ? 'default' : 'outline'} size="sm" onClick={() => setSortMode('featured')}>
-            <SlidersHorizontal className="mr-2 h-4 w-4" />
+          <Button 
+            variant={sortMode === 'featured' ? 'default' : 'outline'} 
+            size="sm" 
+            onClick={() => setSortMode('featured')}
+            aria-label="Sort by featured products"
+            aria-pressed={sortMode === 'featured'}
+          >
+            <SlidersHorizontal className="mr-2 h-4 w-4" aria-hidden="true" />
             Featured
           </Button>
-          <Button variant={sortMode === 'az' ? 'default' : 'outline'} size="sm" onClick={() => setSortMode('az')}>
+          <Button 
+            variant={sortMode === 'az' ? 'default' : 'outline'} 
+            size="sm" 
+            onClick={() => setSortMode('az')}
+            aria-label="Sort alphabetically A-Z"
+            aria-pressed={sortMode === 'az'}
+          >
             A-Z
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => setViewMode('grid')}>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setViewMode('grid')}
+            aria-label="Grid view"
+            aria-pressed={viewMode === 'grid'}
+          >
             <Grid3X3 className={cn('h-4 w-4', viewMode === 'grid' && 'text-primary')} />
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => setViewMode('list')}>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setViewMode('list')}
+            aria-label="List view"
+            aria-pressed={viewMode === 'list'}
+          >
             <List className={cn('h-4 w-4', viewMode === 'list' && 'text-primary')} />
           </Button>
         </div>
@@ -126,6 +160,9 @@ export default function DehydratedCatalogClient() {
                   <img
                     src={resolveDehydratedImage(featuredImage)}
                     alt={featuredImage.alt}
+                    width="400"
+                    height="300"
+                    loading="lazy"
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent" />

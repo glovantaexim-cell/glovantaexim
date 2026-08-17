@@ -118,6 +118,9 @@ export default async function CategoryPage({ params }: Props) {
               '/textile-card.png'
             }
             alt={category.title}
+            width="1920"
+            height="1080"
+            loading="eager"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />

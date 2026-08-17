@@ -16,7 +16,10 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-4">
               <img 
                 src="/logo.png" 
-                alt={SITE_CONFIG.name}
+                alt="Glovanta Exim"
+                width="40"
+                height="40"
+                loading="lazy"
                 className="h-10 w-auto object-contain"
               />
               <div>

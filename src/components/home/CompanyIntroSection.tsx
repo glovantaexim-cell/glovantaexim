@@ -54,7 +54,7 @@ export default function CompanyIntroSection() {
                 variants={staggerItem}
                 whileHover={{ y: -10, scale: 1.03 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="group relative bg-white rounded-[20px] p-8 border border-[#E5F0FF] hover:border-blue-600 transition-all duration-400 cursor-pointer h-full flex flex-col"
+                className="group relative bg-white rounded-[20px] p-8 border border-[#E5F0FF] hover:border-blue-600 transition-all duration-400 h-full flex flex-col"
                 style={{
                   boxShadow: '0 10px 35px rgba(37, 99, 235, 0.08)',
                 }}
@@ -66,7 +66,6 @@ export default function CompanyIntroSection() {
                 }}
                 role="article"
                 aria-label={value.title}
-                tabIndex={0}
               >
                 {/* Decorative corner gradient */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-50 to-transparent rounded-tr-[20px] opacity-50" />

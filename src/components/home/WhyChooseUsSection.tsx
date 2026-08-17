@@ -81,7 +81,7 @@ export default function WhyChooseUsSection() {
                   duration: 0.4, 
                   ease: [0.4, 0, 0.2, 1]
                 }}
-                className="group relative bg-white rounded-[20px] p-8 border border-[#E8F0FF] hover:border-[#2563EB] cursor-pointer h-full flex flex-col"
+                className="group relative bg-white rounded-[20px] p-8 border border-[#E8F0FF] hover:border-[#2563EB] h-full flex flex-col"
                 style={{
                   boxShadow: '0 12px 35px rgba(37, 99, 235, 0.08)',
                 }}
@@ -93,7 +93,6 @@ export default function WhyChooseUsSection() {
                 }}
                 role="article"
                 aria-label={feature.title}
-                tabIndex={0}
               >
                 {/* Decorative dotted pattern - top right */}
                 <div className="absolute top-4 right-4 w-12 h-12 opacity-0 group-hover:opacity-10 transition-opacity duration-400">

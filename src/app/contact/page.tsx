@@ -3,24 +3,58 @@ import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import ContactForm from '@/components/forms/ContactForm';
 import { SITE_CONFIG } from '@/lib/constants';
 import { Card } from '@/components/ui/card';
+import { 
+  getOrganizationSchema, 
+  getContactPageSchema 
+} from '@/lib/structured-data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Get in Touch',
-  description: 'Contact Global Export Solutions for inquiries about premium spices, dehydrated products, and textile exports. We respond within 24 hours.',
+  description: 'Contact Glovanta Exim for inquiries about spices, dehydrated ingredients, and textiles. We respond within 24 hours.',
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
+  openGraph: {
+    title: 'Contact Us - Get in Touch | Glovanta Exim',
+    description: 'Contact Glovanta Exim for inquiries about spices, dehydrated ingredients, and textiles. We respond within 24 hours.',
+    type: 'website',
+    url: `${SITE_URL}/contact`,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Us - Get in Touch | Glovanta Exim',
+    description: 'Contact Glovanta Exim for inquiries about spices, dehydrated ingredients, and textiles. We respond within 24 hours.',
+  },
 };
 
 export default async function ContactPage({ searchParams }: { searchParams?: Promise<{ product?: string }> }) {
   const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const defaultProductInterest = resolvedSearchParams?.product ? decodeURIComponent(resolvedSearchParams.product) : undefined;
 
+  const organizationSchema = getOrganizationSchema();
+  const contactPageSchema = getContactPageSchema();
+
   return (
     <>
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }} 
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-200 to-blue-400 text-white overflow-hidden min-h-[400px] flex items-center">
         <div className="absolute inset-0 z-0">
           <img 
             src="/about-hero.png" 
             alt="Contact Us"
+            width="1920"
+            height="1080"
+            loading="eager"
             className="w-full h-full object-cover"
           />
         </div>
@@ -30,7 +64,7 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
               Get in Touch
             </h1>
             <p className="text-xl text-white drop-shadow-md">
-              Have questions? We&apos;re here to help you with your export needs
+              Have questions? We&apos;re here to help with your sourcing needs
             </p>
           </div>
         </div>
@@ -94,7 +128,7 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
                     <p className="text-sm text-gray-600 mb-2">
                       Our office location
                     </p>
-                    <p className="text-gray-700">{SITE_CONFIG.address}</p>
+                    <address className="text-gray-700 not-italic">{SITE_CONFIG.address}</address>
                   </div>
                 </div>
               </Card>
@@ -123,8 +157,26 @@ export default async function ContactPage({ searchParams }: { searchParams?: Pro
                   Send Us a Message
                 </h2>
                 <p className="text-gray-600 mb-8">
-                  Fill out the form below and we&apos;ll get back to you within 24 hours
+                  Fill out the form below and we&apos;ll get back to you within 24 hours with details, pricing, MOQ, and shipping information
                 </p>
+                
+                {/* Export Inquiry Information */}
+                <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Inquiry Information</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div>
+                      <p><strong>Response Time:</strong> Within 24 hours</p>
+                      <p><strong>Sample Policy:</strong> Available (charges apply)</p>
+                      <p><strong>Documentation:</strong> Complete docs provided</p>
+                    </div>
+                    <div>
+                      <p><strong>Payment Terms:</strong> Flexible options available</p>
+                      <p><strong>Shipping:</strong> Worldwide delivery</p>
+                      <p><strong>Support:</strong> Dedicated team</p>
+                    </div>
+                  </div>
+                </div>
+                
                 <ContactForm defaultProductInterest={defaultProductInterest} />
               </Card>
             </div>

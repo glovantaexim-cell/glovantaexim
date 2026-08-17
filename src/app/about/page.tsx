@@ -4,15 +4,63 @@ import { Button } from '@/components/ui/button';
 import CompanyIntroSection from '@/components/home/CompanyIntroSection';
 import ExportProcessSection from '@/components/home/ExportProcessSection';
 import { ArrowRight } from 'lucide-react';
+import { 
+  getOrganizationSchema, 
+  getAboutPageSchema,
+  getHowToSchema 
+} from '@/lib/structured-data';
+import { EXPORT_PROCESS_STEPS } from '@/lib/constants';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
 export const metadata: Metadata = {
   title: 'About Us - Glovanta Exim',
-  description: 'Learn about our journey, mission, and commitment to delivering premium quality export products from India to the world.',
+  description: 'Learn about our journey, mission, and commitment to delivering quality goods from India to international markets.',
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
+  openGraph: {
+    title: 'About Us - Glovanta Exim',
+    description: 'Learn about our journey, mission, and commitment to delivering quality goods from India to international markets.',
+    type: 'website',
+    url: `${SITE_URL}/about`,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us - Glovanta Exim',
+    description: 'Learn about our journey, mission, and commitment to delivering quality goods from India to international markets.',
+  },
 };
 
 export default function AboutPage() {
+  const organizationSchema = getOrganizationSchema();
+  const aboutPageSchema = getAboutPageSchema();
+  
+  // HowTo Schema for Export Process
+  const howToSchema = getHowToSchema({
+    name: 'How to Order from Glovanta Exim',
+    description: 'A step-by-step guide to ordering premium export products from Glovanta Exim - from initial inquiry to delivery.',
+    steps: EXPORT_PROCESS_STEPS.map(step => ({
+      name: step.title,
+      text: step.description,
+    })),
+    totalTime: 'P14D', // ISO 8601 duration format: ~14 days typical
+  });
+
   return (
     <>
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} 
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-200 to-blue-400 text-white overflow-hidden min-h-[500px] flex items-center">
         {/* Background Image */}
@@ -20,6 +68,9 @@ export default function AboutPage() {
           <img 
             src="/about-hero.png" 
             alt="About Glovanta Exim"
+            width="1920"
+            height="1080"
+            loading="eager"
             className="w-full h-full object-cover"
           />
         </div>
@@ -35,9 +86,12 @@ export default function AboutPage() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg">
               About Us
             </h1>
-            <p className="text-xl text-white drop-shadow-md">
-              Building bridges between India and the world through quality exports
-            </p>
+            {/* Speakable content - concise summary suitable for voice assistants */}
+            <div className="speakable-content">
+              <p className="text-xl text-white drop-shadow-md">
+                Building bridges between India and the world through reliable sourcing
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -45,35 +99,43 @@ export default function AboutPage() {
       {/* Company Story */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl overflow-hidden shadow-2xl">
+          <article className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <aside>
+              <figure className="aspect-[4/3] bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl overflow-hidden shadow-2xl">
                 <img 
                   src="/about-us.png" 
-                  alt="About Glovanta Exim"
+                  alt="Glovanta Exim team and facilities"
+                  width="1200"
+                  height="900"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
-              </div>
-            </div>
+              </figure>
+            </aside>
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 About Glovanta Exim
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Glovanta Exim is dedicated to showcasing India&apos;s finest products to the global market. 
-                  We specialize in exporting premium quality spices, dehydrated products, and textiles 
-                  to customers worldwide.
+                  Glovanta Exim is dedicated to showcasing India&apos;s finest offerings to the global market. 
+                  We specialize in sourcing spices, dehydrated ingredients, and textiles 
+                  for international buyers, serving customers in over 50 countries.
                 </p>
                 <p>
-                  We work closely with trusted farmers, manufacturers, and quality control experts 
-                  across India. This extensive network allows us to source the finest products while 
-                  maintaining the highest quality standards.
+                  We work closely with trusted farmers, manufacturers, and specialists 
+                  across India. This extensive network allows us to source excellent items while 
+                  maintaining high standards for markets including the USA, Europe, Middle East, and Asia-Pacific.
                 </p>
                 <p>
-                  Our commitment to quality, transparency, and customer satisfaction drives everything 
-                  we do. We strive to be your reliable export partner, delivering exceptional products 
-                  and service with every order.
+                  Our commitment to transparency, customer satisfaction, and reliable supply chains drives everything 
+                  we do. We strive to be your trusted partner, delivering exceptional service 
+                  with every order, backed by proper documentation and certifications.
+                </p>
+                <p>
+                  <strong>Why Choose Glovanta Exim:</strong> Direct sourcing relationships, 
+                  flexible solutions, competitive pricing, consistent availability, 
+                  and comprehensive documentation support for smooth international trade.
                 </p>
               </div>
               <div className="mt-8">
@@ -85,7 +147,7 @@ export default function AboutPage() {
                 </Button>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </section>
 
@@ -102,7 +164,7 @@ export default function AboutPage() {
             Ready to Partner With Us?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Connect with us to explore premium quality export products from India
+            Connect with us to explore quality goods from India
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50" asChild>

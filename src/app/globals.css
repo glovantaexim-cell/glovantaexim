@@ -387,3 +387,8 @@
     display: none !important;
   }
 }
+
+/* Speakable content - for voice assistants */
+.speakable-content {
+  /* Visual styling remains the same, class used for semantic markup */
+}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Loader2 } from 'lucide-react';
 
 export default function NewsletterForm() {
@@ -44,13 +45,25 @@ export default function NewsletterForm() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="space-y-2">
+      <form 
+        onSubmit={handleSubmit} 
+        className="space-y-2"
+        aria-label="Newsletter subscription form"
+        noValidate
+      >
+        <Label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </Label>
         <Input
+          id="newsletter-email"
+          name="email"
           type="email"
+          autoComplete="email"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          aria-required="true"
           disabled={status === 'loading'}
           className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-400"
         />
@@ -58,10 +71,11 @@ export default function NewsletterForm() {
           type="submit"
           className="w-full"
           disabled={status === 'loading'}
+          aria-label="Subscribe to newsletter"
         >
           {status === 'loading' ? (
             <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
               Subscribing...
             </>
           ) : (
@@ -74,6 +88,8 @@ export default function NewsletterForm() {
           className={`text-sm mt-2 ${
             status === 'success' ? 'text-green-400' : 'text-red-400'
           }`}
+          role="status"
+          aria-live="polite"
         >
           {message}
         </p>

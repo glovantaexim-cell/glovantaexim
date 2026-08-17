@@ -110,7 +110,7 @@ export const spicesCategoryKeywords = [
 
 const files = [
   'ajwain-seed.png',
-  'blue-mustard-seed.png',
+  'black-mustard-seed.png',
   'coriander-powder.png',
   'coriander-seed.png',
   'cumin-powder.png',

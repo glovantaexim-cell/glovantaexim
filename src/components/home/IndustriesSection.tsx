@@ -84,7 +84,7 @@ export default function IndustriesSection() {
                 variants={cardVariants}
                 whileHover={{ y: -12, scale: 1.03 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="group relative bg-white rounded-[20px] p-8 border border-[#E7EEF9] hover:border-[#2563EB] overflow-hidden cursor-pointer"
+                className="group relative bg-white rounded-[20px] p-8 border border-[#E7EEF9] hover:border-[#2563EB] overflow-hidden"
                 style={{
                   minHeight: '280px',
                   boxShadow: '0 12px 40px rgba(37, 99, 235, 0.08)',
@@ -97,7 +97,6 @@ export default function IndustriesSection() {
                 }}
                 role="article"
                 aria-label={industry.title}
-                tabIndex={0}
               >
                 {/* World map watermark */}
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none">

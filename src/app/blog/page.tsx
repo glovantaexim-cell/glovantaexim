@@ -3,10 +3,27 @@ import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
+import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/structured-data';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
 export const metadata: Metadata = {
   title: 'Blog - Export Insights & Industry News',
   description: 'Read the latest insights on export business, industry trends, product guides, and tips for international trade.',
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: 'Blog - Export Insights & Industry News | Glovanta Exim',
+    description: 'Read the latest insights on export business, industry trends, product guides, and tips for international trade.',
+    type: 'website',
+    url: `${SITE_URL}/blog`,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog - Export Insights & Industry News | Glovanta Exim',
+    description: 'Read the latest insights on export business, industry trends, product guides, and tips for international trade.',
+  },
 };
 
 // Sample blog posts (replace with database query)
@@ -15,8 +32,27 @@ const blogPosts: any[] = [];
 const categories = ['All', 'Spices', 'Dehydrated Products', 'Textiles', 'Export Guide', 'Quality Standards'];
 
 export default function BlogPage() {
+  const collectionPageSchema = getCollectionPageSchema({
+    url: `${SITE_URL}/blog`,
+    name: 'Blog - Export Insights & Industry News',
+    description: 'Read the latest insights on export business, industry trends, product guides, and tips for international trade.',
+  });
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Blog', url: `${SITE_URL}/blog` },
+  ]);
+
   return (
     <>
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }} 
+      />
+      <script 
+        type="application/ld+json" 
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} 
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-200 to-blue-400 text-white overflow-hidden min-h-[450px] flex items-center">
         <div className="absolute inset-0 z-0">

@@ -41,7 +41,7 @@ export default function PremiumHome() {
               India&apos;s finest, <span className="text-[#88d8e8]">delivered worldwide.</span>
             </motion.h1>
             <motion.p variants={heroChildren} transition={{ duration: 0.6, ease: 'easeOut' }} className="mt-7 max-w-xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-              Glovanta brings together premium spices, dehydrated ingredients, and home textiles for buyers who value quality, clarity, and dependable export support.
+              Glovanta brings together premium spices, dehydrated ingredients, and home textiles for international buyers who appreciate dependable sourcing and clear communication.
             </motion.p>
             <motion.div variants={heroChildren} transition={{ duration: 0.6, ease: 'easeOut' }} className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link href="/products" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f3a35d] px-6 py-3.5 text-sm font-bold text-[#3b2414] shadow-[0_12px_28px_rgba(0,0,0,0.2)] transition-all hover:-translate-y-0.5 hover:bg-[#ffc282]">Explore product lines <ArrowRight className="h-4 w-4" /></Link>
@@ -103,9 +103,58 @@ export default function PremiumHome() {
 
       <section className="bg-[#062b43] py-20 text-white sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="max-w-2xl"><span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#96d9e6]"><span className="h-px w-7 bg-[#f3a35d]" /> Why partners choose us</span><h2 className="mt-4 text-4xl font-bold tracking-[-0.05em] sm:text-5xl">Trade with more confidence.</h2><p className="mt-5 text-base leading-7 text-white/65 sm:text-lg">The small details shape a strong export relationship. We give them the focus they deserve.</p></div>
+          <div className="max-w-2xl"><span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#96d9e6]"><span className="h-px w-7 bg-[#f3a35d]" /> Why partners choose us</span><h2 className="mt-4 text-4xl font-bold tracking-[-0.05em] sm:text-5xl">Trade with more confidence.</h2><p className="mt-5 text-base leading-7 text-white/65 sm:text-lg">We pay attention to the details that matter, building reliable partnerships for international trade.</p></div>
           <div className="mt-12 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/10 bg-white/10 md:grid-cols-2">
             {reasons.map((reason, index) => { const Icon = reason.icon; return <motion.div key={reason.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: index * 0.06 }} className="group bg-[#062b43] p-7 transition-colors hover:bg-[#0a3853] sm:p-8"><span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#0d698d] text-[#bcecf2] transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105"><Icon className="h-5 w-5" /></span><h3 className="mt-6 text-xl font-bold tracking-[-0.03em]">{reason.title}</h3><p className="mt-3 max-w-md text-sm leading-6 text-white/65">{reason.copy}</p></motion.div>; })}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbfaf7] py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-5 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <span className="eyebrow">Common questions</span>
+            <h2 className="section-heading">What Products Does Glovanta Exim Export?</h2>
+            <p className="mt-4 text-base leading-7 text-[#58717d]">
+              We supply three main categories: Indian spices (turmeric, cumin, coriander, chilli, and more), dehydrated vegetables and ingredients (onion, garlic, tomato, herbal items), and home textiles (bed linens, towels, table linens for hospitality and residential use).
+            </p>
+          </div>
+
+          <div className="mt-16 space-y-8">
+            <div className="border-l-2 border-[#e3723e] pl-6">
+              <h3 className="text-xl font-bold text-[#062b43]">How Can International Buyers Submit an Inquiry?</h3>
+              <p className="mt-3 text-base leading-7 text-[#58717d]">
+                International buyers can submit inquiries through our contact form, WhatsApp, or email. We respond within 24 hours with details, pricing, MOQ, packaging options, and shipping information tailored to your requirements.
+              </p>
+            </div>
+
+            <div className="border-l-2 border-[#e3723e] pl-6">
+              <h3 className="text-xl font-bold text-[#062b43]">What Packaging Options Are Available?</h3>
+              <p className="mt-3 text-base leading-7 text-[#58717d]">
+                We offer flexible options including bulk bags, retail pouches, custom labeling, and private branding. Specifications can be tailored to meet your market requirements and import regulations.
+              </p>
+            </div>
+
+            <div className="border-l-2 border-[#e3723e] pl-6">
+              <h3 className="text-xl font-bold text-[#062b43]">Which Countries Does Glovanta Exim Ship To?</h3>
+              <p className="mt-3 text-base leading-7 text-[#58717d]">
+                We ship to over 50 countries including the USA, UK, EU nations, Middle East, Southeast Asia, and Australia. Our team handles all documentation, customs clearance, and logistics coordination.
+              </p>
+            </div>
+
+            <div className="border-l-2 border-[#e3723e] pl-6">
+              <h3 className="text-xl font-bold text-[#062b43]">What Is the Minimum Order Quantity?</h3>
+              <p className="mt-3 text-base leading-7 text-[#58717d]">
+                Minimum order quantities vary by category and packaging type. We work with both small importers and large-scale buyers. Contact us with your specific requirements for accurate MOQ information.
+              </p>
+            </div>
+
+            <div className="border-l-2 border-[#e3723e] pl-6">
+              <h3 className="text-xl font-bold text-[#062b43]">Does Glovanta Provide Product Samples?</h3>
+              <p className="mt-3 text-base leading-7 text-[#58717d]">
+                Yes, we provide samples for evaluation before bulk orders. Sample costs and shipping charges apply. This ensures you can verify our quality meets your standards before committing to larger shipments.
+              </p>
+            </div>
           </div>
         </div>
       </section>

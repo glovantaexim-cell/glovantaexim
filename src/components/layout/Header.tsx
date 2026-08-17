@@ -35,7 +35,10 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3 group">
             <img 
               src="/logo.png" 
-              alt={SITE_CONFIG.name}
+              alt="Glovanta Exim"
+              width="48"
+              height="48"
+              loading="eager"
               className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
             />
             <div className="hidden md:block">
