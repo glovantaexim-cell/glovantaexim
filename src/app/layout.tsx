@@ -74,11 +74,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Preload hero images for better LCP */}
-        <link rel="preload" as="image" href="/hero-bg-mobile.avif" media="(max-width: 640px)" />
-        <link rel="preload" as="image" href="/hero-bg-tablet.avif" media="(min-width: 641px) and (max-width: 1024px)" />
-        <link rel="preload" as="image" href="/hero-bg-desktop.avif" media="(min-width: 1025px)" />
-        
         {/* DNS prefetch for external services */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
