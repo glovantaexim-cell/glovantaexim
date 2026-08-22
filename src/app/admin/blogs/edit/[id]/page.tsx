@@ -130,28 +130,47 @@ export default function EditBlogPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log('[Frontend] Updating blog post:', {
+      title: formData.title,
+      slug: formData.slug,
+      author: formData.author,
+      status: formData.status,
+      hasFeaturedImage: !!formData.featuredImage,
+      hasContent: !!formData.content,
+      publishDate: formData.publishDate,
+    });
+    
     setIsLoading(true);
 
     const id = params?.id;
     if (!id) return;
 
     try {
+      console.log('[Frontend] Sending PUT request to /api/admin/blogs/' + id);
+      
       const response = await fetch(`/api/admin/blogs/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
+      console.log('[Frontend] Response status:', response.status);
+
       if (response.ok) {
+        const result = await response.json();
+        console.log('[Frontend] Blog updated successfully:', result);
         alert('Blog post updated successfully!');
         router.back();
       } else {
         const error = await response.json();
-        alert(`Failed to update blog: ${error.error}`);
+        console.error('[Frontend] Update blog failed:', error);
+        alert(`Failed to update blog: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error('Failed to update blog:', error);
-      alert('Failed to update blog post. Please try again.');
+      console.error('[Frontend] Update error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Failed to update blog post: ${errorMessage}. Check the browser console for details.`);
     } finally {
       setIsLoading(false);
     }

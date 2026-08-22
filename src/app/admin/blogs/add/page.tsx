@@ -45,6 +45,12 @@ export default function AddBlogPage() {
   };
 
   const handleImageUpload = async (file: File) => {
+    console.log('[Frontend] Starting image upload:', {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
+    
     setImageUploading(true);
     
     try {
@@ -52,21 +58,29 @@ export default function AddBlogPage() {
       formData.append('file', file);
       formData.append('folder', 'blog-images');
 
+      console.log('[Frontend] Sending request to /api/upload/image');
+
       const response = await fetch('/api/upload/image', {
         method: 'POST',
         body: formData,
       });
 
+      console.log('[Frontend] Response status:', response.status);
+
       if (response.ok) {
         const result = await response.json();
+        console.log('[Frontend] Upload successful:', result);
         setFormData(prev => ({ ...prev, featuredImage: result.url }));
+        alert('Image uploaded successfully!');
       } else {
         const error = await response.json();
-        alert(`Upload failed: ${error.error}`);
+        console.error('[Frontend] Upload failed:', error);
+        alert(`Upload failed: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error('Upload error:', error);
-      alert('Failed to upload image. Please try again.');
+      console.error('[Frontend] Upload error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Failed to upload image: ${errorMessage}. Check the browser console for details.`);
     } finally {
       setImageUploading(false);
     }
@@ -103,25 +117,43 @@ export default function AddBlogPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log('[Frontend] Submitting blog post:', {
+      title: formData.title,
+      slug: formData.slug,
+      author: formData.author,
+      status: formData.status,
+      hasFeaturedImage: !!formData.featuredImage,
+      hasContent: !!formData.content,
+    });
+    
     setIsLoading(true);
 
     try {
+      console.log('[Frontend] Sending request to /api/admin/blogs');
+      
       const response = await fetch('/api/admin/blogs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
+      console.log('[Frontend] Response status:', response.status);
+
       if (response.ok) {
+        const result = await response.json();
+        console.log('[Frontend] Blog created successfully:', result);
         alert('Blog post created successfully!');
         router.push('/admin?page=blogs');
       } else {
         const error = await response.json();
-        alert(`Failed to create blog: ${error.error}`);
+        console.error('[Frontend] Create blog failed:', error);
+        alert(`Failed to create blog: ${error.error || 'Unknown error'}`);
       }
     } catch (error) {
-      console.error('Failed to create blog:', error);
-      alert('Failed to create blog post. Please try again.');
+      console.error('[Frontend] Submit error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`Failed to create blog post: ${errorMessage}. Check the browser console for details.`);
     } finally {
       setIsLoading(false);
     }

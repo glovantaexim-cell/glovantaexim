@@ -2,8 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, Clock, ArrowRight, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, Search, User } from 'lucide-react';
 import { getCollectionPageSchema, getBreadcrumbSchema } from '@/lib/structured-data';
+import { db } from '@/db';
+import { blogs } from '@/db/schema';
+import { desc, eq } from 'drizzle-orm';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
@@ -26,12 +29,26 @@ export const metadata: Metadata = {
   },
 };
 
-// Sample blog posts (replace with database query)
-const blogPosts: any[] = [];
+async function getBlogPosts() {
+  try {
+    const publishedBlogs = await db
+      .select()
+      .from(blogs)
+      .where(eq(blogs.status, 'published'))
+      .orderBy(desc(blogs.publishDate));
+    
+    return publishedBlogs;
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    return [];
+  }
+}
 
 const categories = ['All', 'Spices', 'Dehydrated Products', 'Textiles', 'Export Guide', 'Quality Standards'];
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const blogPosts = await getBlogPosts();
+  
   const collectionPageSchema = getCollectionPageSchema({
     url: `${SITE_URL}/blog`,
     name: 'Blog - Export Insights & Industry News',
@@ -113,19 +130,31 @@ export default function BlogPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {blogPosts.map((post) => (
                   <Card key={post.id} className="overflow-hidden hover:shadow-xl transition-shadow group">
-                    <div className={`h-48 bg-gradient-to-br ${post.image} flex items-center justify-center text-white text-6xl`}>
-                      {post.category === 'Spices' ? '🌶️' :
-                       post.category === 'Dehydrated Products' ? '🥕' :
-                       post.category === 'Textiles' ? '🛏️' : '📝'}
-                    </div>
+                    {post.featuredImage ? (
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={post.featuredImage} 
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                    ) : (
+                      <div className="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-6xl">
+                        {post.category === 'Indian Spices' ? '🌶️' :
+                         post.category === 'Dehydrated Products' ? '🥕' :
+                         post.category === 'Textiles' ? '🛏️' : '📝'}
+                      </div>
+                    )}
                     <div className="p-6">
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                        <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
-                          {post.category}
-                        </span>
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-3">
+                        {post.category && (
+                          <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+                            {post.category}
+                          </span>
+                        )}
                         <span className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          {new Date(post.date).toLocaleDateString('en-US', {
+                          {new Date(post.publishDate || post.createdAt).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
                             year: 'numeric',
@@ -135,11 +164,13 @@ export default function BlogPage() {
                       <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                      {post.excerpt && (
+                        <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                      )}
                       <div className="flex items-center justify-between pt-4 border-t">
                         <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <Clock className="w-4 h-4" />
-                          <span>{post.readTime} min read</span>
+                          <User className="w-4 h-4" />
+                          <span>{post.author}</span>
                         </div>
                         <Button variant="link" className="p-0 h-auto group/btn" asChild>
                           <Link href={`/blog/${post.slug}`}>

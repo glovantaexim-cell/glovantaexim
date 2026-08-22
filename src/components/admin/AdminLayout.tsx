@@ -145,15 +145,22 @@ export function AdminLayout({
         }`}
       >
         <div className="p-4 border-b border-slate-700">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-lg flex items-center justify-center font-bold text-slate-900">
-              GE
-            </div>
+          <a 
+            href="/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity"
+          >
+            <img 
+              src="/logo.png" 
+              alt="Glovanta Exim" 
+              className="w-10 h-10 object-contain"
+            />
             <div>
-              <div className="font-bold text-white">Glovanta</div>
+              <div className="font-bold text-white">Glovanta Exim</div>
               <div className="text-xs text-slate-400">Admin Panel</div>
             </div>
-          </div>
+          </a>
         </div>
 
         {/* Navigation */}

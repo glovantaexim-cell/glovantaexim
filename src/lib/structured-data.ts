@@ -263,6 +263,46 @@ export function getHowToSchema(params: {
 }
 
 /**
+ * Article Schema - For blog posts and articles
+ */
+export function getArticleSchema(params: {
+  url: string;
+  headline: string;
+  description: string;
+  image: string;
+  datePublished: string;
+  dateModified: string;
+  author: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${params.url}#article`,
+    url: params.url,
+    headline: params.headline,
+    description: params.description,
+    image: params.image,
+    datePublished: params.datePublished,
+    dateModified: params.dateModified,
+    author: {
+      '@type': 'Person',
+      name: params.author,
+    },
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
+    isPartOf: {
+      '@id': `${SITE_URL}/#website`,
+    },
+    inLanguage: 'en-US',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': params.url,
+    },
+  };
+}
+
+/**
  * Render JSON-LD script tag
  */
 export function renderJsonLd(data: any) {
