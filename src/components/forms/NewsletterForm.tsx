@@ -50,6 +50,7 @@ export default function NewsletterForm() {
         className="space-y-2"
         aria-label="Newsletter subscription form"
         noValidate
+        suppressHydrationWarning
       >
         <Label htmlFor="newsletter-email" className="sr-only">
           Email address

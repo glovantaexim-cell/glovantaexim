@@ -30,12 +30,14 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const folder = formData.get('folder') as string || 'blog-images';
+    const customName = formData.get('customName') as string || '';
 
     console.log('[Image Upload] File received:', {
       name: file?.name,
       type: file?.type,
       size: file?.size,
       folder,
+      customName,
     });
 
     if (!file) {
@@ -63,17 +65,39 @@ export async function POST(request: NextRequest) {
 
     console.log('[Image Upload] Buffer created, uploading to Cloudinary...');
 
+    // Prepare upload options
+    const uploadOptions: any = {
+      resource_type: 'image',
+      folder: folder,
+      transformation: [
+        { quality: 'auto:good' },
+        { fetch_format: 'auto' }
+      ]
+    };
+
+    // Add custom public_id if customName is provided
+    if (customName.trim()) {
+      // Sanitize the custom name (remove special characters, replace spaces with dashes)
+      const sanitizedName = customName
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+      
+      uploadOptions.public_id = sanitizedName;
+      uploadOptions.use_filename = false;
+      uploadOptions.unique_filename = false;
+      
+      console.log('[Image Upload] Using custom name:', sanitizedName);
+    } else {
+      uploadOptions.use_filename = true;
+      uploadOptions.unique_filename = true;
+    }
+
     // Upload to Cloudinary
     const uploadResponse = await new Promise<any>((resolve, reject) => {
       cloudinary.uploader.upload_stream(
-        {
-          resource_type: 'image',
-          folder: folder,
-          transformation: [
-            { quality: 'auto:good' },
-            { fetch_format: 'auto' }
-          ]
-        },
+        uploadOptions,
         (error, result) => {
           if (error) {
             console.error('[Image Upload] Cloudinary error:', error);

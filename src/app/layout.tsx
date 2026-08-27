@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { SITE_CONFIG } from '@/lib/constants';
-import { CriticalCSS } from '@/components/shared/CriticalCSS';
 import ClientLayout from './ClientLayout';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -67,9 +66,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Critical CSS inline - prevents render blocking */}
-        <CriticalCSS />
-        
         {/* Preload critical fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -97,7 +93,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <ClientLayout>
           {children}
         </ClientLayout>

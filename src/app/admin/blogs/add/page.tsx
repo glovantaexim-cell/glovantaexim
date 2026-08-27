@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { AdminLayout } from '@/components/admin/AdminLayout';
-import { X, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { X, Image as ImageIcon, Loader2, Upload, Link2 } from 'lucide-react';
 
 export default function AddBlogPage() {
   const router = useRouter();
@@ -11,6 +11,9 @@ export default function AddBlogPage() {
   
   const [isLoading, setIsLoading] = useState(false);
   const [imageUploading, setImageUploading] = useState(false);
+  const [imageInputMode, setImageInputMode] = useState<'upload' | 'url'>('upload');
+  const [imageUrl, setImageUrl] = useState('');
+  const [customImageName, setCustomImageName] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -49,20 +52,26 @@ export default function AddBlogPage() {
       name: file.name,
       type: file.type,
       size: file.size,
+      customName: customImageName,
     });
     
     setImageUploading(true);
     
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('folder', 'blog-images');
+      const uploadFormData = new FormData();
+      uploadFormData.append('file', file);
+      uploadFormData.append('folder', 'blog-images');
+      
+      // Add custom image name if provided
+      if (customImageName.trim()) {
+        uploadFormData.append('customName', customImageName.trim());
+      }
 
       console.log('[Frontend] Sending request to /api/upload/image');
 
       const response = await fetch('/api/upload/image', {
         method: 'POST',
-        body: formData,
+        body: uploadFormData,
       });
 
       console.log('[Frontend] Response status:', response.status);
@@ -71,6 +80,7 @@ export default function AddBlogPage() {
         const result = await response.json();
         console.log('[Frontend] Upload successful:', result);
         setFormData(prev => ({ ...prev, featuredImage: result.url }));
+        setCustomImageName(''); // Reset custom name after successful upload
         alert('Image uploaded successfully!');
       } else {
         const error = await response.json();
@@ -82,6 +92,35 @@ export default function AddBlogPage() {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       alert(`Failed to upload image: ${errorMessage}. Check the browser console for details.`);
     } finally {
+      setImageUploading(false);
+    }
+  };
+
+  const handleImageUrlSubmit = async () => {
+    if (!imageUrl.trim()) {
+      alert('Please enter an image URL');
+      return;
+    }
+
+    setImageUploading(true);
+    
+    try {
+      // Validate if the URL is accessible
+      const img = new Image();
+      img.onload = () => {
+        setFormData(prev => ({ ...prev, featuredImage: imageUrl.trim() }));
+        setImageUrl('');
+        alert('Image URL added successfully!');
+        setImageUploading(false);
+      };
+      img.onerror = () => {
+        alert('Failed to load image from URL. Please check if the URL is valid and accessible.');
+        setImageUploading(false);
+      };
+      img.src = imageUrl.trim();
+    } catch (error) {
+      console.error('[Frontend] URL validation error:', error);
+      alert('Failed to validate image URL');
       setImageUploading(false);
     }
   };
@@ -167,7 +206,7 @@ export default function AddBlogPage() {
           <p className="text-slate-500 mt-2">Write and publish a new blog article</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-8" suppressHydrationWarning>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-6">
@@ -282,8 +321,37 @@ export default function AddBlogPage() {
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-lg font-semibold text-slate-900 mb-4">Featured Image</h3>
                 
-                {formData.featuredImage ? (
-                  <div className="relative">
+                {/* Toggle between Upload and URL - Always visible */}
+                <div className="flex gap-2 mb-4">
+                  <button
+                    type="button"
+                    onClick={() => setImageInputMode('upload')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      imageInputMode === 'upload'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    <Upload className="w-4 h-4 inline-block mr-1" />
+                    Upload
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setImageInputMode('url')}
+                    className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      imageInputMode === 'url'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    <Link2 className="w-4 h-4 inline-block mr-1" />
+                    URL
+                  </button>
+                </div>
+
+                {/* Current Image Preview */}
+                {formData.featuredImage && (
+                  <div className="relative mb-4">
                     <img
                       src={formData.featuredImage}
                       alt="Featured"
@@ -292,28 +360,100 @@ export default function AddBlogPage() {
                     <button
                       type="button"
                       onClick={() => setFormData(prev => ({ ...prev, featuredImage: '' }))}
-                      className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                      className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 shadow-lg"
                     >
                       <X className="w-4 h-4" />
                     </button>
+                    <div className="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded">
+                      Current Image
+                    </div>
                   </div>
-                ) : (
-                  <div
-                    onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
-                  >
-                    {imageUploading ? (
-                      <div className="flex flex-col items-center">
-                        <Loader2 className="w-8 h-8 text-blue-500 animate-spin mb-2" />
-                        <span className="text-sm text-slate-600">Uploading...</span>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center">
-                        <ImageIcon className="w-8 h-8 text-slate-400 mb-2" />
-                        <span className="text-sm text-slate-600">Click to upload featured image</span>
-                        <span className="text-xs text-slate-400 mt-1">PNG, JPG up to 5MB</span>
-                      </div>
-                    )}
+                )}
+
+                {/* Upload Mode */}
+                {imageInputMode === 'upload' && (
+                  <>
+                    {/* Custom Name Input */}
+                    <div className="mb-3">
+                      <label className="block text-xs font-medium text-slate-600 mb-1">
+                        Custom Image Name (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        value={customImageName}
+                        onChange={(e) => setCustomImageName(e.target.value)}
+                        placeholder="e.g., blog-banner-2024"
+                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                      <p className="text-xs text-slate-400 mt-1">
+                        Leave empty to use original filename
+                      </p>
+                    </div>
+
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
+                    >
+                      {imageUploading ? (
+                        <div className="flex flex-col items-center">
+                          <Loader2 className="w-8 h-8 text-blue-500 animate-spin mb-2" />
+                          <span className="text-sm text-slate-600">Uploading...</span>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col items-center">
+                          <ImageIcon className="w-8 h-8 text-slate-400 mb-2" />
+                          <span className="text-sm text-slate-600">
+                            {formData.featuredImage ? 'Click to change image' : 'Click to upload featured image'}
+                          </span>
+                          <span className="text-xs text-slate-400 mt-1">PNG, JPG up to 5MB</span>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {/* URL Mode */}
+                {imageInputMode === 'url' && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-medium text-slate-600 mb-1">
+                        Image URL
+                      </label>
+                      <input
+                        type="url"
+                        value={imageUrl}
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        placeholder="https://example.com/image.jpg"
+                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleImageUrlSubmit();
+                          }
+                        }}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleImageUrlSubmit}
+                      disabled={imageUploading || !imageUrl.trim()}
+                      className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    >
+                      {imageUploading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Validating...
+                        </>
+                      ) : (
+                        <>
+                          <Link2 className="w-4 h-4" />
+                          {formData.featuredImage ? 'Change to URL Image' : 'Add Image URL'}
+                        </>
+                      )}
+                    </button>
+                    <p className="text-xs text-slate-400">
+                      Enter a direct link to an image hosted online
+                    </p>
                   </div>
                 )}
                 

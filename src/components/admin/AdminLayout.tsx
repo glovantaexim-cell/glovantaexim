@@ -129,7 +129,7 @@ export function AdminLayout({
   const isItemActive = (id: string) => currentPage === id || currentPage.startsWith(id + '-');
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen bg-slate-50" suppressHydrationWarning>
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -143,6 +143,7 @@ export function AdminLayout({
         className={`fixed lg:sticky top-0 left-0 h-screen w-64 bg-gradient-to-b from-slate-900 to-slate-800 text-white transition-transform duration-300 z-40 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
+        suppressHydrationWarning
       >
         <div className="p-4 border-b border-slate-700">
           <a 
@@ -164,7 +165,7 @@ export function AdminLayout({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
+        <nav className="flex-1 overflow-y-auto p-4 space-y-2" suppressHydrationWarning>
           {navItems.map((item) => (
             <div key={item.id}>
               <button
@@ -180,6 +181,7 @@ export function AdminLayout({
                     ? 'bg-blue-600 text-white shadow-lg'
                     : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
                 }`}
+                suppressHydrationWarning
               >
                 <item.icon className="w-5 h-5" />
                 <span className="font-medium">{item.label}</span>
@@ -204,6 +206,7 @@ export function AdminLayout({
                           ? 'bg-blue-500/20 text-blue-300 border-l-2 border-blue-400'
                           : 'text-slate-400 hover:text-slate-200'
                       }`}
+                      suppressHydrationWarning
                     >
                       <subitem.icon className="w-4 h-4" />
                       <span>{subitem.label}</span>
@@ -243,12 +246,13 @@ export function AdminLayout({
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20">
+        <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-20" suppressHydrationWarning>
           <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors"
+                suppressHydrationWarning
               >
                 {sidebarOpen ? (
                   <X className="w-5 h-5" />
@@ -266,6 +270,7 @@ export function AdminLayout({
                   type="text"
                   placeholder="Search..."
                   className="bg-transparent ml-2 outline-none text-sm text-slate-700 placeholder-slate-500 w-32"
+                  suppressHydrationWarning
                 />
               </div>
             </div>
