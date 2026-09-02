@@ -1,14 +1,23 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-  throw new Error('Cloudinary environment variables are not configured');
-}
+// Lazy initialization - only check/configure when actually needed
+let isConfigured = false;
 
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+function ensureCloudinaryConfigured() {
+  if (isConfigured) return;
+  
+  if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    throw new Error('Cloudinary environment variables are not configured');
+  }
+
+  cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+  
+  isConfigured = true;
+}
 
 export interface CloudinaryUploadResponse {
   public_id: string;
@@ -40,6 +49,8 @@ export async function uploadToCloudinary(
     tags?: string[];
   }
 ): Promise<CloudinaryUploadResponse> {
+  ensureCloudinaryConfigured();
+  
   try {
     const folder = options?.folder || 'glovanta/dehydrated';
     
@@ -83,6 +94,8 @@ export async function uploadToCloudinary(
  * Delete an image from Cloudinary
  */
 export async function deleteFromCloudinary(publicId: string): Promise<CloudinaryDeleteResponse> {
+  ensureCloudinaryConfigured();
+  
   try {
     const result = await cloudinary.uploader.destroy(publicId);
     return result as CloudinaryDeleteResponse;
@@ -100,6 +113,8 @@ export function getOptimizedImageUrl(publicId: string, options?: {
   quality?: string;
   format?: 'webp' | 'avif' | 'auto';
 }): string {
+  ensureCloudinaryConfigured();
+  
   const url = cloudinary.url(publicId, {
     quality: options?.quality || 'auto',
     fetch_format: options?.format || 'auto',
@@ -133,6 +148,8 @@ export function generateResponsiveSrcset(publicId: string): {
   srcset: string;
   sizes: string;
 } {
+  ensureCloudinaryConfigured();
+  
   const widths = [320, 640, 1024, 1280, 1920];
   
   const srcset = widths
