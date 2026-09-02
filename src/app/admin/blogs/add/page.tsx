@@ -132,6 +132,37 @@ export default function AddBlogPage() {
     }
   };
 
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const files = e.dataTransfer.files;
+    if (files && files[0]) {
+      const file = files[0];
+      // Check if it's an image
+      if (file.type.startsWith('image/')) {
+        handleImageUpload(file);
+      } else {
+        alert('Please drop an image file');
+      }
+    }
+  };
+
   const handleTagInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' || e.key === ',') {
       e.preventDefault();
@@ -392,6 +423,10 @@ export default function AddBlogPage() {
 
                     <div
                       onClick={() => fileInputRef.current?.click()}
+                      onDragOver={handleDragOver}
+                      onDragEnter={handleDragEnter}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
                       className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
                     >
                       {imageUploading ? (
@@ -403,7 +438,7 @@ export default function AddBlogPage() {
                         <div className="flex flex-col items-center">
                           <ImageIcon className="w-8 h-8 text-slate-400 mb-2" />
                           <span className="text-sm text-slate-600">
-                            {formData.featuredImage ? 'Click to change image' : 'Click to upload featured image'}
+                            {formData.featuredImage ? 'Click to change image' : 'Click or drag & drop to upload'}
                           </span>
                           <span className="text-xs text-slate-400 mt-1">PNG, JPG up to 5MB</span>
                         </div>

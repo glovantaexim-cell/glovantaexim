@@ -11,6 +11,9 @@ import { getArticleSchema, getBreadcrumbSchema } from '@/lib/structured-data';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
+// Revalidate this page every 60 seconds to fetch fresh blog post data
+export const revalidate = 60;
+
 interface BlogPostPageProps {
   params: {
     slug: string;

@@ -10,6 +10,9 @@ import { desc, eq } from 'drizzle-orm';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.glovantaexim.com';
 
+// Revalidate this page every 60 seconds to fetch fresh blog posts
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Blog - Export Insights & Industry News',
   description: 'Read the latest insights on export business, industry trends, product guides, and tips for international trade.',
